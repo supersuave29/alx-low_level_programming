@@ -1,28 +1,24 @@
 #include "main.h"
 
 /**
- * leet - encodes a string in 1337
- * @s: string to be encoded
- *
- * Return: the resulting string;
+ * rot13 - rotate characters 13 places in the alphabet
+ * @s: string
+ * Return: string `s` rotated
  */
-char *leet(char *s)
-{
-	int i, j;
 
-	char *a = "aAeEoOtTlL";
-	char *b = "4433007711";
+char *rot13(char *s)
+{
+	int i;
+	char storeh[] = "NOPQRSTUVWXYZABCDEFGHIJKLM";
+	char storel[] = "nopqrstuvwxyzabcdefghijklm";
 
 	for (i = 0; s[i] != '\0'; i++)
 	{
-		for (j = 0; j < 10; j++)
+		if ((s[i] > 64 && s[i] < 91) || (s[i] > 96 && s[i] < 123))
 		{
-			if (s[i] == a[j])
-			{
-				s[i] = b[j];
-			}
+			s[i] = (s[i] - 65 > 25) ?
+				storel[s[i] - 97] : storeh[s[i] - 65];
 		}
 	}
-
 	return (s);
 }
